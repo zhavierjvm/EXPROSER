@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zhavierjvm.github.io/EXPROSER/sitemap.xml
