@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Fuentes ===== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neutral-bg text-neutral-text font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  /* Compensar header fijo al navegar por anclas */
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+}
+
+/* ===== Componentes reutilizables ===== */
+@layer components {
+  /* Contenedor centrado estándar */
+  .contenedor {
+    @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Etiqueta de sección (kicker) */
+  .kicker {
+    @apply inline-block font-technical text-sm font-semibold uppercase tracking-[0.2em] text-accent-cyan;
+  }
+
+  /* Botón primario (acento cian) */
+  .btn-primario {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent-cyan px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-card transition-all duration-200 hover:bg-[#0092AE] hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan;
+  }
+
+  /* Botón secundario (contorno) */
+  .btn-secundario {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border-2 border-white/30 bg-white/5 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+  }
+
+  /* Botón amber (CTA de énfasis) */
+  .btn-amber {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent-amber px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-primary-dark shadow-card transition-all duration-200 hover:bg-[#e0951a] hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-amber;
+  }
+
+  /* Tarjeta base */
+  .tarjeta {
+    @apply rounded-lg bg-neutral-card p-6 shadow-card ring-1 ring-slate-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+  }
+
+  /* Enlace de navegación */
+  .nav-link {
+    @apply font-technical text-sm font-medium uppercase tracking-wide text-white/85 transition-colors hover:text-accent-cyan;
+  }
+
+  /* Badge de confianza */
+  .badge-confianza {
+    @apply flex items-center gap-3 rounded-md bg-white/5 px-4 py-3 ring-1 ring-white/10;
+  }
+}

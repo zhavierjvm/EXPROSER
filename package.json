@@ -1,0 +1,16 @@
+{
+  "name": "exproser",
+  "version": "1.0.0",
+  "description": "Sitio web corporativo de Multiservicios Integrales Exproser S.A.S. — servicio exprés, solución segura.",
+  "private": true,
+  "author": "Multiservicios Integrales Exproser S.A.S.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+    "build": "npx tailwindcss -i ./css/input.css -o ./css/output.css --minify",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
+  }
+}
