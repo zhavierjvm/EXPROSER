@@ -1,0 +1,5 @@
+# Materiales de marca fuente (Word/PDF), no se sirven en el sitio publicado
+docs/
+
+# Dependencias (Vercel las reinstala en el build)
+node_modules/

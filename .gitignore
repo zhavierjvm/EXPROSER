@@ -1,5 +1,6 @@
 # Dependencias
 node_modules/
+.agents/
 
 # Archivos de sistema
 .DS_Store
@@ -11,3 +12,4 @@ npm-debug.log*
 # Editores
 .vscode/
 .idea/
+

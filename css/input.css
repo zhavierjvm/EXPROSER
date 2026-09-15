@@ -2,65 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Fuentes ===== */
+/* ===== Fuentes & Base ===== */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-neutral-bg text-neutral-text font-body antialiased;
+    @apply bg-neutral-bg text-neutral-text font-body antialiased selection:bg-accent-cyan/30 selection:text-primary-dark overflow-x-hidden;
   }
 
   h1, h2, h3, h4 {
     @apply font-display;
   }
 
-  /* Compensar header fijo al navegar por anclas */
   section[id] {
     scroll-margin-top: 88px;
   }
 }
 
-/* ===== Componentes reutilizables ===== */
+/* ===== Barra de Progreso de Scroll Superior ===== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #007A94, #F5A623, #10B981);
+  z-index: 100;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ===== Malla de Fondo Scroll Parallax (Líneas tecnológicas sutiles) ===== */
+.tech-grid-bg {
+  background-image: radial-gradient(rgba(0, 168, 204, 0.15) 1px, transparent 1px),
+                    radial-gradient(rgba(245, 166, 35, 0.10) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+/* ===== Efecto 3D Tilt en Tarjetas al pasar el mouse ===== */
+.tilt-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.tilt-card:hover {
+  transform: translateY(-6px) perspective(1000px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 20px 35px -10px rgba(10, 25, 47, 0.18);
+}
+
+/* ===== Mouse Scroll Indicator ===== */
+.mouse-scroll {
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 13px;
+  display: inline-block;
+  position: relative;
+}
+
+.mouse-scroll .wheel {
+  width: 4px;
+  height: 8px;
+  background: #00A8CC;
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: mouseWheel 1.8s ease-in-out infinite;
+}
+
+@keyframes mouseWheel {
+  0% { opacity: 1; top: 6px; }
+  50% { opacity: 0.4; top: 18px; }
+  100% { opacity: 1; top: 6px; }
+}
+
+/* ===== Componentes Reutilizables ===== */
 @layer components {
-  /* Contenedor centrado estándar */
   .contenedor {
-    @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-12;
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* Etiqueta de sección (kicker) */
   .kicker {
     @apply inline-block font-technical text-sm font-semibold uppercase tracking-[0.2em] text-accent-cyan;
   }
 
-  /* Botón primario (acento cian) */
+  .kicker-sobre-claro {
+    @apply inline-block font-technical text-sm font-semibold uppercase tracking-[0.2em] text-[#007A94];
+  }
+
   .btn-primario {
-    @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent-cyan px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-card transition-all duration-200 hover:bg-[#0092AE] hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan;
+    @apply inline-flex items-center justify-center gap-2.5 rounded-lg bg-[#007A94] px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-card transition-all duration-200 hover:bg-[#005F73] hover:shadow-card-hover hover:scale-[1.02] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007A94];
   }
 
-  /* Botón secundario (contorno) */
   .btn-secundario {
-    @apply inline-flex items-center justify-center gap-2 rounded-md border-2 border-white/30 bg-white/5 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+    @apply inline-flex items-center justify-center gap-2.5 rounded-lg border-2 border-white/30 bg-white/5 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
   }
 
-  /* Botón amber (CTA de énfasis) */
   .btn-amber {
-    @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent-amber px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-primary-dark shadow-card transition-all duration-200 hover:bg-[#e0951a] hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-amber;
+    @apply inline-flex items-center justify-center gap-2.5 rounded-lg bg-accent-amber px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-primary-dark shadow-card transition-all duration-200 hover:bg-[#e0951a] hover:shadow-card-hover hover:scale-[1.02] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-amber;
   }
 
-  /* Tarjeta base */
   .tarjeta {
-    @apply rounded-lg bg-neutral-card p-6 shadow-card ring-1 ring-slate-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+    @apply rounded-xl bg-neutral-card p-6 shadow-card ring-1 ring-slate-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
   }
 
-  /* Enlace de navegación */
+  .tarjeta-servicio {
+    @apply rounded-xl bg-neutral-card shadow-card ring-1 ring-slate-900/5 transition-all duration-300 hover:shadow-card-hover opacity-100 visible;
+  }
+
   .nav-link {
     @apply font-technical text-sm font-medium uppercase tracking-wide text-white/85 transition-colors hover:text-accent-cyan;
   }
 
-  /* Badge de confianza */
   .badge-confianza {
-    @apply flex items-center gap-3 rounded-md bg-white/5 px-4 py-3 ring-1 ring-white/10;
+    @apply flex items-center gap-3.5 rounded-lg bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur-sm transition-all hover:bg-white/10;
+  }
+
+  .tab-filtro {
+    @apply px-4 py-2 rounded-full font-technical text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer border border-slate-200 bg-white text-slate-600 hover:border-[#007A94] hover:text-[#007A94];
+  }
+
+  .tab-filtro-activo {
+    @apply border-[#007A94] bg-[#007A94] text-white shadow-md hover:bg-[#005F73] hover:text-white;
   }
 }
+
